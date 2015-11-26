@@ -46,6 +46,9 @@ public class Frame implements Comparable<Frame> {
 	public void setTimestamp(int ts) {
 		_ts = ts;
 	}
+	public void setId(String id) {
+		_id = id;
+	}
 
 	public boolean addPlayerData(PlayerData data) {
 		return _playersData.add(data);
@@ -53,7 +56,7 @@ public class Frame implements Comparable<Frame> {
 
 	@Override
 	public String toString() {
-		return "Frame<game: " + _game + ", ts:" + _ts + ">";
+		return "Frame<game: " + _game + ", ts: " + _ts + ", id: " + _id + ">";
 	}
 
 	@Override

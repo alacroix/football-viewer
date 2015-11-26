@@ -74,6 +74,9 @@ public class Game {
 				case "ts":
 					f.setTimestamp(jp.getIntValue());
 					break;
+				case "_id":
+					f.setId(jp.getText());
+					break;
 				case "data":
 					parsePlayerData(f);
 					break;
@@ -104,7 +107,7 @@ public class Game {
 				}
 			}
 		} else {
-			System.out.println("Error: records should be an array: skipping.");
+			System.err.println("Error: records should be an array: skipping.");
 			jp.skipChildren();
 		}
 
