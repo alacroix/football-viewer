@@ -1,4 +1,4 @@
-package io.alacroix.entities;
+package io.alacroix.entities.gamedesc;
 
 /**
  *

@@ -1,4 +1,4 @@
-package io.alacroix.entities;
+package io.alacroix.entities.gamedesc;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
