@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import io.alacroix.constants.Constants ?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            fx:controller="io.alacroix.controller.Controller">
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="fieldPane" BorderPane.alignment="CENTER" style="-fx-background-color: limegreen">
+         <prefWidth>
+            <Constants fx:constant="FIELD_WIDTH"/>
+         </prefWidth>
+         <prefHeight>
+            <Constants fx:constant="FIELD_HEIGHT"/>
+         </prefHeight>
+      </Pane>
    </center>
+   <top>
+      <HBox>
+         <Button text="Reset" onAction="#resetGame"/>
+         <Button text="Play" onAction="#playGame"/>
+      </HBox>
+   </top>
 </BorderPane>
