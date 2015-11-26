@@ -1,1 +1,1 @@
-res/of-mu/of-mu.json filter=lfs diff=lfs merge=lfs -text
+res/tr-ft/tr-ft.json filter=lfs diff=lfs merge=lfs -text
