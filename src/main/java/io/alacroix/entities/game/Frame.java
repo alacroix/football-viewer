@@ -1,5 +1,7 @@
 package io.alacroix.entities.game;
 
+import io.alacroix.entities.gamedesc.Player;
+
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -39,16 +41,25 @@ public class Frame implements Comparable<Frame> {
 	private List<PlayerData> _playersData;
 
 	public Frame() {
-		_playersData = new CopyOnWriteArrayList<>();
+		_playersData = new ArrayList<>();
 	}
 
 	public void setGame(String game) { _game = game; }
 	public void setTimestamp(int ts) {
 		_ts = ts;
 	}
+	public void setId(String id) {
+		_id = id;
+	}
 
 	public boolean addPlayerData(PlayerData data) {
 		return _playersData.add(data);
+	}
+	public List<PlayerData> getPlayersData() {
+		return _playersData;
+	}
+	public String getId() {
+		return _id;
 	}
 
 	@Override
@@ -59,5 +70,9 @@ public class Frame implements Comparable<Frame> {
 	@Override
 	public int compareTo(Frame o) {
 		return _ts.compareTo(o._ts);
+	}
+
+	public boolean isValid() {
+		return _playersData.size() == 23;
 	}
 }
