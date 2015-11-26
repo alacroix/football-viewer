@@ -84,8 +84,6 @@ public class Game {
 				case "data":
 					parsePlayerData(f);
 					break;
-				case "_id":
-					f.setId(jp.getText());
 				default:
 					//System.out.println("Unprocessed property: " + fieldName);
 					jp.skipChildren();
