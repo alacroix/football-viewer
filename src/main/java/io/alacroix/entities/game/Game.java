@@ -10,6 +10,7 @@ import io.alacroix.entities.gamedesc.GameDesc;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 /**
@@ -25,11 +26,12 @@ public class Game {
 	private JsonParser jp;
 	private JsonToken current;
 
-	private Set<Frame> frames;
+	private LinkedList<Frame> frames;
+	private int framesSkipped = 0;
 
 	public Game(String pathGame, GameDesc gd) {
 		_gd = gd;
-		frames = new HashSet<>();
+		frames = new LinkedList<>();
 
 		try {
 			JsonFactory factory = new MappingJsonFactory();
@@ -48,6 +50,8 @@ public class Game {
 					return;
 				}
 			}
+			if (framesSkipped != 0)
+				System.err.println(framesSkipped + " frames skipped.");
 		} catch (IOException e) {
 			System.err.println("Invalid file");
 		}
@@ -80,13 +84,19 @@ public class Game {
 				case "data":
 					parsePlayerData(f);
 					break;
+				case "_id":
+					f.setId(jp.getText());
 				default:
 					//System.out.println("Unprocessed property: " + fieldName);
 					jp.skipChildren();
 			}
 		}
-
-		return frames.add(f);
+		if (f.isValid()) {
+			return frames.add(f);
+		} else {
+			framesSkipped++;
+			return true;
+		}
 	}
 
 	public boolean parsePlayerData(Frame f) throws IOException {
@@ -114,4 +124,7 @@ public class Game {
 		return true;
 	}
 
+	public LinkedList<Frame> getFrames() {
+		return frames;
+	}
 }

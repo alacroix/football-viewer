@@ -41,6 +41,16 @@ public class PlayerData {
 		_player = p;
 	}
 
+	public double getX() {
+		return _x;
+	}
+	public double getY() {
+		return _y;
+	}
+	public Player getPlayer() {
+		return _player;
+	}
+
 	@Override
 	public String toString() {
 		return "PlayerData<player: " + _player.getId() + ", x: " +  _x + ", y: " + _y + ">";
