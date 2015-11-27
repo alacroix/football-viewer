@@ -1,13 +1,9 @@
 package io.alacroix.ui;
 
-import com.sun.tools.internal.jxc.ap.Const;
 import io.alacroix.utils.Constants;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
+import javafx.scene.shape.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,9 +12,9 @@ import java.util.Set;
  * Shapes representation of a football field
  *
  * @author Adrien Lacroix
- * @version 0.1.0
+ * @version 0.2.0
  */
-public class FootballField {
+public class FootballField implements ScalableShape {
 
 	private Rectangle fieldBorder;
 	private Line halfwayLine;
@@ -34,13 +30,17 @@ public class FootballField {
 	private Set<Rectangle> keeperAreas;
 	private Rectangle keeperAreaLeft, keeperAreaRight;
 
-	private Set<Shape> statics;
+	private Set<Arc> penaltyArcs;
+	private Arc penaltyArcLeft, penaltyArcRight;
+
+	private Set<Shape> components;
 
 	public FootballField() {
-		statics = new HashSet<>();
+		components = new HashSet<>();
 		spots = new HashSet<>();
 		penaltyAreas = new HashSet<>();
 		keeperAreas = new HashSet<>();
+		penaltyArcs = new HashSet<>();
 
 		fieldBorder = new Rectangle();
 		halfwayLine = new Line();
@@ -52,6 +52,8 @@ public class FootballField {
 		penaltyAreaRight = new Rectangle();
 		keeperAreaLeft = new Rectangle();
 		keeperAreaRight = new Rectangle();
+		penaltyArcLeft = new Arc();
+		penaltyArcRight = new Arc();
 
 		spots.add(centralSpot);
 		spots.add(penaltySpotLeft);
@@ -63,14 +65,18 @@ public class FootballField {
 		keeperAreas.add(keeperAreaLeft);
 		keeperAreas.add(keeperAreaRight);
 
-		statics.add(fieldBorder);
-		statics.add(halfwayLine);
-		statics.add(centralCircle);
-		statics.addAll(penaltyAreas);
-		statics.addAll(keeperAreas);
-		statics.addAll(spots);
+		penaltyArcs.add(penaltyArcLeft);
+		penaltyArcs.add(penaltyArcRight);
 
-		for (Shape s : statics) {
+		components.add(fieldBorder);
+		components.add(halfwayLine);
+		components.add(centralCircle);
+		components.addAll(penaltyAreas);
+		components.addAll(keeperAreas);
+		components.addAll(spots);
+		components.addAll(penaltyArcs);
+
+		for (Shape s : components) {
 			s.setStroke(Color.WHITE);
 			s.setFill(Color.TRANSPARENT);
 		}
@@ -79,7 +85,7 @@ public class FootballField {
 	public void draw(Region region, double scale_X, double scale_Y) {
 		double median_scale = (scale_X + scale_Y) / 2.0;
 
-		for (Shape s : statics) {
+		for (Shape s : components) {
 			s.setStrokeWidth(median_scale);
 		}
 		for (Circle c : spots) {
@@ -135,9 +141,23 @@ public class FootballField {
 		keeperAreaLeft.setX(Constants.FIELD_PADDING / 2.0 * scale_X);
 		// right area
 		keeperAreaRight.setX(region.getWidth() - Constants.FIELD_PADDING / 2.0 * scale_X - keeperAreaRight.getWidth());
+
+		// penalty arcs
+		for (Arc a : penaltyArcs) {
+			a.setCenterY(region.getHeight() / 2.0);
+			a.setRadiusX(Constants.PENALTY_RADIUS * scale_X);
+			a.setRadiusY(Constants.PENALTY_RADIUS * scale_Y);
+			a.setLength(100.0);
+		}
+		// left arc
+		penaltyArcLeft.setCenterX(penaltySpotLeft.getCenterX());
+		penaltyArcLeft.setStartAngle(-50.0);
+		// right arc
+		penaltyArcRight.setCenterX(penaltySpotRight.getCenterX());
+		penaltyArcRight.setStartAngle(40 + 90);
 	}
 
 	public Set<Shape> getComponents() {
-		return statics;
+		return components;
 	}
 }

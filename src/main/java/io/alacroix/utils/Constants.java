@@ -4,7 +4,7 @@ package io.alacroix.utils;
  *
  *
  * @author Adrien Lacroix
- * @version 0.1.0
+ * @version 0.2.0
  */
 public class Constants {
 	public final static int BALL_ID = 5;
@@ -23,6 +23,7 @@ public class Constants {
 	public final static double PENALTY_HEIGHT = 40.3;
 
 	public final static double PENALTY_DISTANCE = 11;
+	public final static double PENALTY_RADIUS = CENTRAL_RADIUS;
 
 	public final static double KEEPER_WIDTH = 5.5;
 	public final static double KEEPER_HEIGHT = 18.32;
