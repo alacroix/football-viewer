@@ -9,5 +9,5 @@ import javafx.scene.layout.Region;
  * @version 0.1.0
  */
 public interface ScalableShape {
-	void draw(Region region, double scale_X, double scale_Y);
+	void updateScale(Region region, double scale_X, double scale_Y);
 }

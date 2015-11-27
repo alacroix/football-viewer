@@ -1,12 +1,9 @@
 package io.alacroix.ui;
 
-import com.sun.javafx.geom.*;
 import io.alacroix.utils.Constants;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -95,7 +92,7 @@ public class FootballField implements ScalableShape {
 		}
 	}
 
-	public void draw(Region region, double scale_X, double scale_Y) {
+	public void updateScale(Region region, double scale_X, double scale_Y) {
 		double median_scale = (scale_X + scale_Y) / 2.0;
 
 		for (Shape s : components) {

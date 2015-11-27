@@ -9,8 +9,8 @@ package io.alacroix.utils;
 public class Constants {
 	public final static int BALL_ID = 5;
 
-	public final static int PLAYER_RADIUS = 8;
-	public final static int BALL_RADIUS = 5;
+	public final static double PLAYER_RADIUS = 2.0;
+	public final static double BALL_RADIUS = 1.0;
 
 	public final static double FIELD_WIDTH = 105;
 	public final static double FIELD_HEIGHT = 68;

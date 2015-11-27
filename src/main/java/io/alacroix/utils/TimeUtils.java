@@ -20,4 +20,12 @@ public abstract class TimeUtils {
 				TimeUnit.MILLISECONDS.toSeconds(milliseconds) % 60);
 	}
 
+	public static long msToMin(int milliseconds) {
+		return TimeUnit.MILLISECONDS.toMinutes(milliseconds);
+	}
+
+	public static long msToSec(int milliseconds) {
+		return TimeUnit.MILLISECONDS.toSeconds(milliseconds);
+	}
+
 }

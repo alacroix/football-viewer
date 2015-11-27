@@ -2,30 +2,17 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import io.alacroix.utils.Constants ?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1"
-            maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            fx:controller="io.alacroix.controller.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.alacroix.controller.Controller">
    <center>
-      <Pane fx:id="fieldPane" BorderPane.alignment="CENTER" style="-fx-background-color: limegreen">
-         <prefWidth>
-            <Constants fx:constant="FIELD_WIDTH"/>
-         </prefWidth>
-         <prefHeight>
-            <Constants fx:constant="FIELD_HEIGHT"/>
-         </prefHeight>
-      </Pane>
+      <Pane fx:id="fieldPane" style="-fx-background-color: limegreen" />
    </center>
-   <top>
+   <bottom>
       <HBox>
-         <Button text="Reset" onAction="#resetGame"/>
-         <Button text="Play" onAction="#toggleGame" fx:id="toggleButton"/>
-         <Label fx:id="currentTime"/>
-         <Label text=" / " />
-         <Label fx:id="totalTime"/>
+         <Button fx:id="toggleButton" onAction="#toggleGame" text="▶" />
+         <Label fx:id="currentTime" />
+         <Slider fx:id="framesSlider" />
+         <Label fx:id="totalTime" />
       </HBox>
-   </top>
+   </bottom>
 </BorderPane>
