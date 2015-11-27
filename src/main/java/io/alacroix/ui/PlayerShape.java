@@ -1,6 +1,6 @@
 package io.alacroix.ui;
 
-import io.alacroix.constants.Constants;
+import io.alacroix.utils.Constants;
 import io.alacroix.entities.game.PlayerData;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
