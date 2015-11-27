@@ -2,7 +2,9 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import io.alacroix.constants.Constants ?>
+<?import io.alacroix.utils.Constants ?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1"
             maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
@@ -20,7 +22,10 @@
    <top>
       <HBox>
          <Button text="Reset" onAction="#resetGame"/>
-         <Button text="Play" onAction="#playGame"/>
+         <Button text="Play" onAction="#toggleGame" fx:id="toggleButton"/>
+         <Label fx:id="currentTime"/>
+         <Label text=" / " />
+         <Label fx:id="totalTime"/>
       </HBox>
    </top>
 </BorderPane>

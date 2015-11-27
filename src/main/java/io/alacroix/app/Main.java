@@ -38,6 +38,7 @@ public class Main extends Application {
 		primaryStage.show();
 
 		Controller c = loader.getController();
+		c.init();
 		c.loadGame(g.getFrames());
 	}
 }

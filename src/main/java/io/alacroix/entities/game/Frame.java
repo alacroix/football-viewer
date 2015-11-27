@@ -1,9 +1,7 @@
 package io.alacroix.entities.game;
 
-import io.alacroix.entities.gamedesc.Player;
-
-import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -60,6 +58,9 @@ public class Frame implements Comparable<Frame> {
 	}
 	public String getId() {
 		return _id;
+	}
+	public int getTimestamp() {
+		return _ts;
 	}
 
 	@Override
