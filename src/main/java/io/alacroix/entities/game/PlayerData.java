@@ -40,6 +40,9 @@ public class PlayerData {
 	public void setPlayer(Player p) {
 		_player = p;
 	}
+	public void setPoss(boolean hasBall) {
+		_poss = hasBall;
+	}
 
 	public double getX() {
 		return _x;
@@ -49,6 +52,9 @@ public class PlayerData {
 	}
 	public Player getPlayer() {
 		return _player;
+	}
+	public boolean hasBall() {
+		return _poss;
 	}
 
 	@Override

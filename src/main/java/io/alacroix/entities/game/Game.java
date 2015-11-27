@@ -9,9 +9,7 @@ import io.alacroix.entities.gamedesc.GameDesc;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Set;
 
 /**
  *
@@ -109,6 +107,7 @@ public class Game {
 				data.setPlayer(_gd.getPlayers().get(node.get("id").asInt()));
 				data.setX(node.get("x").asDouble());
 				data.setY(node.get("y").asDouble());
+				data.setPoss(node.get("poss").asBoolean());
 
 				if (!f.addPlayerData(data)) {
 					return false;
