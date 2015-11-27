@@ -25,6 +25,9 @@ public class Constants {
 	public final static double PENALTY_DISTANCE = 11;
 	public final static double PENALTY_RADIUS = CENTRAL_RADIUS;
 
+	public final static double GOAL_WIDTH = 2.5;
+	public final static double GOAL_HEIGHT = 7.32;
+
 	public final static double KEEPER_WIDTH = 5.5;
-	public final static double KEEPER_HEIGHT = 18.32;
+	public final static double KEEPER_HEIGHT = 11 + GOAL_HEIGHT;
 }

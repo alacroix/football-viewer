@@ -1,9 +1,12 @@
 package io.alacroix.ui;
 
+import com.sun.javafx.geom.*;
 import io.alacroix.utils.Constants;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -33,6 +36,9 @@ public class FootballField implements ScalableShape {
 	private Set<Arc> penaltyArcs;
 	private Arc penaltyArcLeft, penaltyArcRight;
 
+	private Set<Rectangle> goalAreas;
+	private Rectangle goalAreaLeft, goalAreaRight;
+
 	private Set<Shape> components;
 
 	public FootballField() {
@@ -41,6 +47,7 @@ public class FootballField implements ScalableShape {
 		penaltyAreas = new HashSet<>();
 		keeperAreas = new HashSet<>();
 		penaltyArcs = new HashSet<>();
+		goalAreas = new HashSet<>();
 
 		fieldBorder = new Rectangle();
 		halfwayLine = new Line();
@@ -54,6 +61,8 @@ public class FootballField implements ScalableShape {
 		keeperAreaRight = new Rectangle();
 		penaltyArcLeft = new Arc();
 		penaltyArcRight = new Arc();
+		goalAreaLeft = new Rectangle();
+		goalAreaRight = new Rectangle();
 
 		spots.add(centralSpot);
 		spots.add(penaltySpotLeft);
@@ -68,6 +77,9 @@ public class FootballField implements ScalableShape {
 		penaltyArcs.add(penaltyArcLeft);
 		penaltyArcs.add(penaltyArcRight);
 
+		goalAreas.add(goalAreaLeft);
+		goalAreas.add(goalAreaRight);
+
 		components.add(fieldBorder);
 		components.add(halfwayLine);
 		components.add(centralCircle);
@@ -75,6 +87,7 @@ public class FootballField implements ScalableShape {
 		components.addAll(keeperAreas);
 		components.addAll(spots);
 		components.addAll(penaltyArcs);
+		components.addAll(goalAreas);
 
 		for (Shape s : components) {
 			s.setStroke(Color.WHITE);
@@ -86,7 +99,7 @@ public class FootballField implements ScalableShape {
 		double median_scale = (scale_X + scale_Y) / 2.0;
 
 		for (Shape s : components) {
-			s.setStrokeWidth(median_scale);
+			s.setStrokeWidth(0.8 * median_scale);
 		}
 		for (Circle c : spots) {
 			c.setRadius(Constants.SPOT_RADIUS * median_scale);
@@ -155,6 +168,18 @@ public class FootballField implements ScalableShape {
 		// right arc
 		penaltyArcRight.setCenterX(penaltySpotRight.getCenterX());
 		penaltyArcRight.setStartAngle(40 + 90);
+
+		// goal areas
+		// keeper areas
+		for (Rectangle area : goalAreas) {
+			area.setWidth(Constants.GOAL_WIDTH * scale_X);
+			area.setHeight(Constants.GOAL_HEIGHT * scale_Y);
+			area.setY(region.getHeight() / 2.0 - area.getHeight() / 2.0);
+		}
+		// left area
+		goalAreaLeft.setX(Constants.FIELD_PADDING / 2.0 * scale_X - goalAreaLeft.getWidth());
+		// right area
+		goalAreaRight.setX(region.getWidth() - Constants.FIELD_PADDING / 2.0 * scale_X);
 	}
 
 	public Set<Shape> getComponents() {
